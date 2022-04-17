@@ -1,5 +1,6 @@
 import urllib.request  # 导入包
 import pandas as pd
+from tqdm import tqdm
 
 
 def getHtml(url):  # 获取html的内容
@@ -15,7 +16,7 @@ def saveHtml(fileName, fileContent):
 def main():
     Lmore15=pd.read_csv('200wLmore15_notrepeat.csv')
     objID=Lmore15['objID']
-    for i in objID:
+    for i in tqdm(objID):
         url = 'http://skyserver.sdss.org/dr17/VisualTools/explore/summary?id='+str(i)
         html = getHtml(url)
         saveHtml('sdss_objID/sdss_objID_'+str(i)+'.html', html)
